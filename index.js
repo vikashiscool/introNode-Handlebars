@@ -16,6 +16,9 @@ artist: 'Pearl Jam'},
 artist: 'Nirvana'}
 ];
 
+//Serve static files (images, css, and js files) in public directory
+app.use(express.static('public'));
+
 //Use Handlebars as templating engine
 app.set('view engine', 'hbs');
  
