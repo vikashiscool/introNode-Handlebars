@@ -4,16 +4,23 @@ var express = require('express'),
 //You need to REQUIRE handlebars in order to use it for JSON requests (then refer to line 19-20)
 var hbs     = require('hbs');
 
-var myName  = "SQUASH";
+var myName  = "V-SQUASH";
 
 // seed data for albums
 var myAlbums = [
-{title: 'Cupid Deluxe',
-artist: 'Blood Orange'},
+{title: 'Metallica',
+artist: 'Black Album'},
 {title: 'Ten',
 artist: 'Pearl Jam'},
 {title: 'In Utero',
 artist: 'Nirvana'}
+];
+
+var myRestaurants = [
+  {name: "Olive Garden"},
+  {name: "Arby's"},
+  {name: "El Farolito"},
+  {name: "Eleven"}
 ];
 
 //Serve static files (images, css, and js files) in public directory
@@ -22,21 +29,20 @@ app.use(express.static('public'));
 //Use Handlebars as templating engine
 app.set('view engine', 'hbs');
  
-// each helper method for hbs template
+// "LIST" helper method for hbs template
 hbs.registerHelper('list', function(context, options) {
 var ret = "<ul>";
 
 for(var i=0, j=context.length; i<j; i++) {
   ret = ret + "<li>" + options.fn(context[i]) + "</li>";
 }
-
   return ret + "</ul>";
 });
 
 
 
 app.get('/', function(req, res){
-  res.render('index', {name: myName});
+  res.render('index', {name: myName, restaurants: myRestaurants});
 });
 
 
@@ -46,6 +52,9 @@ app.get('/albums', function(req, res){
   res.render('albums', {albums: myAlbums});
 });
 
+app.get('/api/restaurants', function (req, res){
+  res.json(myRestaurants);
+});
 
 
 //Show all posts (READ)

@@ -1,12 +1,37 @@
 <head>
+
+  <!-- Latest compiled and minified Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  <!-- Latest compiled and minified Bootstrap JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
   <link rel="stylesheet" type="text/css" href="styles.css">
   <script type="text/javascript" src="scripts.js"></script>
+
 </head>
 
 <body>
-  <h1>THIS IS MY ATTEMPT TO USE HANDLEBARS AND EXPRESS</h1>
 
+<div class="container">
+    <h1>THIS IS MY ATTEMPT TO USE HANDLEBARS AND EXPRESS</h1>
+    <h2>...and these are my favorite restaurants (rendered from JSON using AJAX)</h2>
+  {{#list restaurants}}
+    <h3>{{name}}</h3>
+  {{/list}}
+</div>
+
+
+<div class="container">
+  <div class="jumbotron">
   <h2>{{name}} is pretty neat.</h2>
-
+  </div>
+</div>
   <h3>{{albums}}</h3>
 </body>
