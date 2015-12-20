@@ -1,8 +1,12 @@
 var express = require('express'),
     app     = express();
 
-var myName = "SQUASH";
+//You need to REQUIRE handlebars in order to use it for JSON requests (then refer to line 19-20)
+var hbs     = require('hbs');
 
+var myName  = "SQUASH";
+
+// seed data for albums
 var myAlbums = [
 {title: 'Cupid Deluxe',
 artist: 'Blood Orange'},
@@ -15,6 +19,19 @@ artist: 'Nirvana'}
 //Use Handlebars as templating engine
 app.set('view engine', 'hbs');
  
+// each helper method for hbs template
+hbs.registerHelper('list', function(context, options) {
+var ret = "<ul>";
+
+for(var i=0, j=context.length; i<j; i++) {
+  ret = ret + "<li>" + options.fn(context[i]) + "</li>";
+}
+
+  return ret + "</ul>";
+});
+
+
+
 app.get('/', function(req, res){
   res.render('index', {name: myName});
 });
